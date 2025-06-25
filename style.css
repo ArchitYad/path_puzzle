@@ -1,55 +1,65 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f0f0f0;
-}
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
 
-#grid {
-  display: grid;
-  margin: 20px auto;
-  gap: 2px;
-  user-select: none;
-}
+    #grid {
+      display: grid;
+      margin: 20px auto;
+      gap: 2px;
+      user-select: none;
+    }
 
-.cell {
-  width: 32px;
-  height: 32px;
-  border: 1px solid #ccc;
-  background: white;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 32px;
-  cursor: pointer;
-}
+    .cell {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ccc;
+      background: white;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 32px;
+      cursor: pointer;
+    }
 
-.cell.wall {
-  background: black;
-  color: white;
-}
+    .cell.wall {
+      background: black;
+      color: white;
+    }
 
-.cell.start::before {
-  content: "🚩";
-}
+    .cell.start::before {
+      content: "\1F6A9"; /* 🚩 */
+    }
 
-.cell.end::before {
-  content: "🏁";
-}
+    .cell.end.hidden::before {
+      content: "";
+    }
 
-.cell.teleport {
-  background: orange;
-  color: white;
-}
+    .cell.end.reveal::before {
+      content: "\1F3C1"; /* 🏁 */
+    }
 
-.cell.path {
-  background: lightblue !important;
-}
+    .cell.teleport {
+      background: orange;
+      color: white;
+    }
 
-.cell.energy::before {
-  content: "";
-}
+    .cell.path {
+      background: lightblue !important;
+    }
 
-.cell.energy.reveal::before {
-  content: "⚡";
-  color: red;
-}
+    .cell.energy[data-cost="-1"].reveal::before {
+      content: "\26A1"; /* ⚡ */
+      color: #88c;
+    }
+
+    .cell.energy[data-cost="-3"].reveal::before {
+      content: "\26A1"; /* ⚡ */
+      color: #f90;
+    }
+
+    .cell.energy[data-cost="-5"].reveal::before {
+      content: "\26A1"; /* ⚡ */
+      color: red;
+    }
